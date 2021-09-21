@@ -6,9 +6,17 @@ public class Test {
         System.out.println(first.apply(first.x));
     SqrFunction second=new SqrFunction(34.01);
         System.out.println(second.apply(second.x));
-    root4 third=new root4(16);
+    root4Function third=new root4Function(16);
         System.out.println(third.apply(third.x));
     absFunction fourth=new absFunction(-3.5);
         System.out.println(fourth.apply(fourth.x));
+    CompositeFunction fifth=new CompositeFunction(new absFunction(-16), new root4Function(16),-16);
+        System.out.println(fifth.apply(fifth.x));
+    ConstantFunction sixth=new ConstantFunction(2);
+        System.out.println(sixth.apply(2));
+    ZeroFunction seventh=new ZeroFunction();
+        System.out.println(seventh.apply(9));
+    UnoFunction eighth=new UnoFunction();
+        System.out.println(eighth.apply(578));
     }
 }
