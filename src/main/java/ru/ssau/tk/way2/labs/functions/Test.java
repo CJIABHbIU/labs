@@ -18,5 +18,8 @@ public class Test {
         System.out.println(seventh.apply(9));
     UnoFunction eighth=new UnoFunction();
         System.out.println(eighth.apply(578));
+    SqrFunction ninth=new SqrFunction(10);
+    CompositeFunction tenth=ninth.andThen(new SqrFunction(ninth.apply(10)));
+        System.out.println(tenth.apply(15));
     }
 }
