@@ -18,23 +18,3 @@ public class ConstantFunction implements MathFunction {
     }
 }
 
-class ZeroFunction extends ConstantFunction {
-    public ZeroFunction() {
-    }
-
-    @Override
-    public double apply(double x) {
-        return 0;
-    }
-}
-
-class UnoFunction extends ConstantFunction {
-
-    public UnoFunction() {
-    }
-
-    @Override
-    public double apply(double x) {
-        return 1;
-    }
-}

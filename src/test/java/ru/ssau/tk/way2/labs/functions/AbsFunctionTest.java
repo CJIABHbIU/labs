@@ -4,11 +4,11 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class absFunctionTest {
+public class AbsFunctionTest {
 
     @Test
     public void testApply() {
-        absFunction first=new absFunction();
+        AbsFunction first=new AbsFunction();
         double actual = first.apply(-8);
         double expected= 8;
         assertEquals(actual,expected);
