@@ -8,9 +8,9 @@ public class UnoFunctionTest {
 
     @Test
     public void testApply() {
-        UnoFunction first=new UnoFunction();
-        double actual=first.apply(-8);
-        double expected= 1;
-        assertEquals(actual,expected);
+        UnoFunction first = new UnoFunction();
+        double actual = first.apply(-8);
+        double expected = 1;
+        assertEquals(actual, expected);
     }
 }

@@ -4,13 +4,13 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class ZeroFunctionTest {
+public class IdentityFunctionTest {
 
     @Test
     public void testApply() {
-        ZeroFunction first = new ZeroFunction();
+        IdentityFunction first = new IdentityFunction();
         double actual = first.apply(-8);
-        double expected = 0;
+        double expected = -8;
         assertEquals(actual, expected);
     }
 }
