@@ -9,7 +9,7 @@ public class absFunctionTest {
     @Test
     public void testApply() {
         absFunction first=new absFunction();
-        double actual=first.apply(-8);
+        double actual = first.apply(-8);
         double expected= 8;
         assertEquals(actual,expected);
     }
