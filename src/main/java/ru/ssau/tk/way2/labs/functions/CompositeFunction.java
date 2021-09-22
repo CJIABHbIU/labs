@@ -1,6 +1,6 @@
 package ru.ssau.tk.way2.labs.functions;
 
-public class CompositeFunction implements MathFunction{
+public class CompositeFunction implements MathFunction{             //класс совмещает несколько ф-ий
     public double x;
     private MathFunction FirstFunction;
     private MathFunction SecondFunction;
