@@ -1,31 +1,40 @@
 package ru.ssau.tk.way2.labs.functions;
 
-public class ConstantFunction implements MathFunction{
-    private final double MyScore=300;
-    public ConstantFunction(double MyScore){
+public class ConstantFunction implements MathFunction {
+    private final double constanta;
+
+    public ConstantFunction(double x) {
+        constanta = x;
     }
+
+    public ConstantFunction() {
+        constanta = 0;
+    }
+
+
     @Override
-    public double apply(double x){
-        return MyScore*2;
+    public double apply(double x) {
+        return constanta;
     }
 }
 
-class ZeroFunction implements MathFunction{
-    private final double a=0;
-    public ZeroFunction(){
+class ZeroFunction extends ConstantFunction {
+    public ZeroFunction() {
     }
+
     @Override
-    public double apply(double x){
-        return a;
+    public double apply(double x) {
+        return 0;
     }
 }
 
-class UnoFunction implements MathFunction{
-    private final double b=1;
-    public UnoFunction(){
+class UnoFunction extends ConstantFunction {
+
+    public UnoFunction() {
     }
+
     @Override
-    public double apply(double x){
-        return b;
+    public double apply(double x) {
+        return 1;
     }
 }
