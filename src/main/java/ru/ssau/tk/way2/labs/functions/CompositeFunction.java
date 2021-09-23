@@ -4,9 +4,9 @@ public class CompositeFunction implements MathFunction{
     private MathFunction firstFunction;
     private MathFunction secondFunction;
 
-    public CompositeFunction(MathFunction FirstFunction, MathFunction SecondFunction) {
-        this.firstFunction = FirstFunction;
-        this.secondFunction = SecondFunction;
+    public CompositeFunction(MathFunction firstFunction, MathFunction secondFunction) {
+        this.firstFunction = firstFunction;
+        this.secondFunction = secondFunction;
     }
 
     public CompositeFunction() {
