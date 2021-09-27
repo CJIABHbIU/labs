@@ -16,13 +16,13 @@ public class CompositeFunctionTest {
         double actualA = second.apply(16);
         double expectedA = 4;
         assertEquals(actualA, expectedA);
-        CompositeFunction third=new CompositeFunction(new FourthRootFunction(), new SqrFunction());
-        double actualB=third.apply(-16);
-        double expectedB=Double.NaN;
-        assertEquals(actualB,expectedB);
-        CompositeFunction fourth= new CompositeFunction(new SqrFunction(),new FourthRootFunction());
-        double actualC=fourth.apply(-4);
-        double expectedC=2;
-        assertEquals(actualC,expectedC);
+        CompositeFunction third = new CompositeFunction(new FourthRootFunction(), new SqrFunction());
+        double actualB = third.apply(-16);
+        double expectedB = Double.NaN;
+        assertEquals(actualB, expectedB);
+        CompositeFunction fourth = new CompositeFunction(new SqrFunction(), new FourthRootFunction());
+        double actualC = fourth.apply(-4);
+        double expectedC = 2;
+        assertEquals(actualC, expectedC);
     }
 }

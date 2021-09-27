@@ -8,9 +8,9 @@ public class AbsFunctionTest {
 
     @Test
     public void testApply() {
-        AbsFunction first=new AbsFunction();
+        AbsFunction first = new AbsFunction();
         double actual = first.apply(-8);
-        double expected= 8;
-        assertEquals(actual,expected);
+        double expected = 8;
+        assertEquals(actual, expected);
     }
 }
