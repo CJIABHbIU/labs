@@ -1,8 +1,11 @@
 package ru.ssau.tk.way2.labs.functions;
 
-public class absFunction implements MathFunction {
+class ZeroFunction extends ConstantFunction {
+    public ZeroFunction() {
+    }
+
     @Override
     public double apply(double x) {
-        return Math.abs(x);
+        return 0;
     }
 }

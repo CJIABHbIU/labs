@@ -1,12 +1,12 @@
 package ru.ssau.tk.way2.labs.functions;
 
-public class CompositeFunction implements MathFunction {
-    private MathFunction FirstFunction;
-    private MathFunction SecondFunction;
+public class CompositeFunction implements MathFunction{
+    private MathFunction firstFunction;
+    private MathFunction secondFunction;
 
-    public CompositeFunction(MathFunction FirstFunction, MathFunction SecondFunction) {
-        this.FirstFunction = FirstFunction;
-        this.SecondFunction = SecondFunction;
+    public CompositeFunction(MathFunction firstFunction, MathFunction secondFunction) {
+        this.firstFunction = firstFunction;
+        this.secondFunction = secondFunction;
     }
 
     public CompositeFunction() {
@@ -14,6 +14,6 @@ public class CompositeFunction implements MathFunction {
 
     @Override
     public double apply(double x) {
-        return (SecondFunction.apply(FirstFunction.apply(x)));
+        return (secondFunction.apply(firstFunction.apply(x)));
     }
 }
