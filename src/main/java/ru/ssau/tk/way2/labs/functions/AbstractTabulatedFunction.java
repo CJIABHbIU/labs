@@ -1,8 +1,7 @@
 package ru.ssau.tk.way2.labs.functions;
 
 public abstract class AbstractTabulatedFunction implements TabulatedFunction{
-    private int count;
-
+    protected int count=0;
     abstract int floorIndexOfx(double x);
     abstract double extrapolateLeft(double x);
     abstract double extrapolateRight(double x);
