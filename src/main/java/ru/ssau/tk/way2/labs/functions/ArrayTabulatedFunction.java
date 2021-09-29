@@ -3,7 +3,6 @@ package ru.ssau.tk.way2.labs.functions;
 import java.util.Arrays;
 
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
-    private int count;
     private double[] x;
     private double[] y;
 
