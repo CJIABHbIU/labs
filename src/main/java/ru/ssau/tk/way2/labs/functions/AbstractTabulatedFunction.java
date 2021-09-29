@@ -2,8 +2,6 @@ package ru.ssau.tk.way2.labs.functions;
 
 public abstract class AbstractTabulatedFunction implements TabulatedFunction{
     private int count;
-    private double[] x;
-    private double[] y;
 
     abstract int floorIndexOfx(double x);
     abstract double extrapolateLeft(double x);
@@ -13,15 +11,7 @@ public abstract class AbstractTabulatedFunction implements TabulatedFunction{
         return (leftY+(rightY-leftY)/(rightX-leftX)*(x-leftX));
     }
     abstract int superIndexOfX(double x);
-    
-    @Override
-    public double leftBound(){
-        return x[0];
-    }
-    @Override
-    public double rightBound(){
-        return x[count];
-    }
+
     double ret=0;
     @Override
     public double apply(double x){
