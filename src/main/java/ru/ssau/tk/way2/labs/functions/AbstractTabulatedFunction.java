@@ -20,7 +20,7 @@ public abstract class AbstractTabulatedFunction implements TabulatedFunction{
         if (x>rightBound()){
             ret=extrapolateRight(x);
         }
-        if (x>leftBound()&&x<rightBound()){
+        if (x>=leftBound()&&x<=rightBound()){
             if(indexOfX(x)==-1){
                 ret=interpolate(x,floorIndexOfx(x));
             }
