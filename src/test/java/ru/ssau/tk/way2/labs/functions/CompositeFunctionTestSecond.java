@@ -11,5 +11,10 @@ public class CompositeFunctionTestSecond {
         double actual=first.apply(2);
         double expected=1;
         assertEquals(actual,expected);
+
+        CompositeFunction second=new CompositeFunction(new ArrayTabulatedFunction(new double[]{1,2,5}, new double[]{1,2,5}),new LinkedListTabulatedFunction(new double[]{1,2,5}, new double[]{1,2,5}));
+        double actualA=first.apply(2);
+        double expectedA=1;
+        assertEquals(actualA,expectedA);
     }
 }
