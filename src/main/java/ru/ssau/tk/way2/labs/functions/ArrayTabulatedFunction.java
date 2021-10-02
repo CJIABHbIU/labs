@@ -9,21 +9,32 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) {
         this.x = Arrays.copyOf(xValues, xValues.length);
         this.y = Arrays.copyOf(yValues, xValues.length);
-        this.count=xValues.length;
+        this.count = xValues.length;
     }
 
-    public ArrayTabulatedFunction(MathFunction source,double xFrom, double xTo, int count) {
-        double step=(xTo-xFrom)/(count-1);
-        for(int i=0;i<count;i++){
-            this.x[i]=xFrom+i*step;
-            this.y[i]=source.apply(xFrom+i*step);
+    public ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
+        if (count == 1) {
+            this.x = new double[]{xFrom};
+            this.y = new double[]{source.apply(xFrom)};
+            this.count = count;
+            return;
         }
-        this.count=count;
+        double step = (xTo - xFrom) / (count - 1);
+        double[] x = new double[count];
+        double[] y = new double[count];
+        for (int i = 0; i < count; i++) {
+            x[i] = xFrom + i * step;
+            y[i] = source.apply(xFrom + i * step);
+        }
+        this.x = Arrays.copyOf(x, count);
+        this.y = Arrays.copyOf(y, count);
+        this.count = count;
     }
+
     @Override
-    int floorIndexOfx(double x) {
+    protected int floorIndexOfX(double x) {
         int k = 0;
-        for(int i=0;i<this.count;i+=1)
+        for (int i = 0; i < this.count; i += 1)
             if (this.x[i] <= x) {
                 k = i;
             }
@@ -31,18 +42,27 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     @Override
-    double extrapolateLeft(double x) {
-        return (this.y[0] + (this.y[1] - this.y[0]) / (this.x[1] - this.x[0]) * (x - this.x[0]));
+    protected double extrapolateLeft(double x) {
+        if(this.count==1){
+            return this.y[0];
+        }
+        return interpolate(x,0);
     }
 
     @Override
-    double extrapolateRight(double x) {
-        return (this.y[this.count-2] + (this.y[this.count-1] - this.y[this.count-2]) / (this.x[this.count-1] - this.x[this.count-2]) * (x - this.x[this.count-2]));
+    protected double extrapolateRight(double x) {
+        if(count==1){
+            return y[0];
+        }
+        return interpolate(x,count-2);
     }
 
     @Override
-    double interpolate(double x, int floorIndex) {
-        return (this.y[floorIndex-2] + (this.y[floorIndex-1] - this.y[floorIndex-2]) / (this.x[floorIndex-1] - this.x[floorIndex-2]) * (x - this.x[floorIndex-2]));
+    protected double interpolate(double x, int floorIndex) {
+        if(count==1){
+            return y[0];
+        }
+        return interpolate(x, this.x[floorIndex],this.x[floorIndex+1],y[floorIndex],y[floorIndex+1]);
     }
 
     @Override
@@ -62,31 +82,27 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     public void setY(int index, double value) {
-    this.y[index]=value;
+        this.y[index] = value;
     }
 
     @Override
     public int indexOfX(double x) {
-        int k=-1;
-    for(int i=0;i<this.count;i++){
-        if(x==this.x[i]){
-            k=i;
-            break;
+        for (int i = 0; i < this.count; i++) {
+            if (x == this.x[i]) {
+                return i;
+            }
         }
-    }
-    return k;
+        return -1;
     }
 
     @Override
     public int indexOfY(double y) {
-        int k=-1;
-        for(int i=0;i<this.count;i++){
-            if(y==this.y[i]){
-                k=i;
-                break;
+        for (int i = 0; i < this.count; i++) {
+            if (y == this.y[i]) {
+                return i;
             }
         }
-        return k;
+        return -1;
     }
 
     @Override
@@ -96,6 +112,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     public double rightBound() {
-        return this.x[count-1];
+        return this.x[count - 1];
     }
 }

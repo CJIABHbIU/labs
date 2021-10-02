@@ -4,59 +4,57 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
-    protected static class Node {
-        public Node next;
-        public Node prev;
-        public double x;
-        public double y;
-    }
-
     private Node head;
     private Node last;
 
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
-    for (int i=0; i<xValues.length; i++){
-        this.addNode(xValues[i],yValues[i]);
-    }
+        for (int i = 0; i < xValues.length; i++) {
+            this.addNode(xValues[i], yValues[i]);
+        }
     }
 
-    public LinkedListTabulatedFunction(MathFunction source,double xFrom, double xTo, int count) {
-        double step=(xTo-xFrom)/(count-1);
-        for (int i=0; i<count; i++){
-            addNode(xFrom+i*step,source.apply(xFrom+i*step));
+    public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
+        if (count == 1) {
+            addNode(xFrom,source.apply(xFrom));
+            return;
+        }
+        double step = (xTo - xFrom) / (count - 1);
+        for (int i = 0; i < count; i++) {
+            addNode(xFrom + i * step, source.apply(xFrom + i * step));
         }
     }
-    private Node getNode (int index){
-        Node getter;
-        getter=this.head;
-        for (int i=0;i<index; i++ ){
-            getter=getter.next;
+
+    private Node getNode(int index) {
+        Node current;
+        current = this.head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
         }
-        return getter;
+        return current;
     }
 
     private void addNode(double x, double y) {
-        Node newnode = new Node();
-        newnode.x=x;
-        newnode.y=y;
+        Node newNode = new Node();
+        newNode.x = x;
+        newNode.y = y;
         count++;
         if (head == null) {
-            head= newnode;
-            newnode.prev=newnode;
-            newnode.next=newnode;
+            head = newNode;
+            newNode.prev = newNode;
+            newNode.next = newNode;
         } else {
-            last.next=newnode;
-            head.prev=newnode;
-            newnode.prev=last;
-            newnode.next=head;
+            last.next = newNode;
+            head.prev = newNode;
+            newNode.prev = last;
+            newNode.next = head;
         }
-        last=head.prev;
+        last = head.prev;
     }
 
     @Override
-    int floorIndexOfx(double x) {
-        int k = 0;
-        for(int i=0;i<count;i+=1)
+    protected int floorIndexOfX(double x) {
+        int k=0;
+        for (int i = 0; i < count; i += 1)
             if (this.getNode(i).x <= x) {
                 k = i;
             }
@@ -64,18 +62,27 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     @Override
-    double extrapolateLeft(double x) {
-        return (this.getNode(0).y + (this.getNode(1).y - this.getNode(0).y) / (this.getNode(1).x - this.getNode(0).x) * (x - this.getNode(0).x));
+    protected double extrapolateLeft(double x) {
+        if (this.count == 1) {
+            return this.getNode(0).y;
+        }
+        return interpolate(x, 0);
     }
 
     @Override
-    double extrapolateRight(double x) {
-        return (this.getNode(count-1).y + (this.getNode(count).y - this.getNode(count-1).y) / (this.getNode(count).x - this.getNode(count-1).x) * (x - this.getNode(count-1).x));
+    protected double extrapolateRight(double x) {
+        if(count==1){
+            return this.getNode(0).y;
+        }
+        return interpolate(x,count-2);
     }
 
     @Override
-    double interpolate(double x, int floorIndex) {
-        return (this.getNode(floorIndex-1).y + (this.getNode(floorIndex).y - this.getNode(floorIndex-1).y) / (this.getNode(floorIndex).x - this.getNode(floorIndex-1).x) * (x - this.getNode(floorIndex-1).x));
+    protected double interpolate(double x, int floorIndex) {
+        if(count==1){
+            return this.getNode(0).y;
+        }
+        return interpolate(x, this.getNode(floorIndex).x,this.getNode(floorIndex+1).x,this.getNode(floorIndex).y,this.getNode(floorIndex+1).y);
     }
 
     @Override
@@ -95,31 +102,27 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     public void setY(int index, double value) {
-        this.getNode(index).y=value;
+        this.getNode(index).y = value;
     }
 
     @Override
     public int indexOfX(double x) {
-        int k=-1;
-        for(int i=0;i<this.count;i++){
-            if(x==this.getNode(i).x){
-                k=i;
-                break;
+        for (int i = 0; i < this.count; i++) {
+            if (x == this.getNode(i).x) {
+                return i;
             }
         }
-        return k;
+        return -1;
     }
 
     @Override
     public int indexOfY(double y) {
-        int k=-1;
-        for(int i=0;i<this.count;i++){
-            if(y==this.getNode(i).y){
-                k=i;
-                break;
+        for (int i = 0; i < this.count; i++) {
+            if (y == this.getNode(i).y) {
+                return i;
             }
         }
-        return k;
+        return -1;
     }
 
     @Override
