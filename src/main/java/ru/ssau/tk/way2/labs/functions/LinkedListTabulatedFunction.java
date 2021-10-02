@@ -15,7 +15,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
         if (count == 1) {
-            addNode(xFrom,source.apply(xFrom));
+            addNode(xFrom, source.apply(xFrom));
             return;
         }
         double step = (xTo - xFrom) / (count - 1);
@@ -53,7 +53,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected int floorIndexOfX(double x) {
-        int k=0;
+        int k = 0;
         for (int i = 0; i < count; i += 1)
             if (this.getNode(i).x <= x) {
                 k = i;
@@ -71,18 +71,18 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected double extrapolateRight(double x) {
-        if(count==1){
+        if (count == 1) {
             return this.getNode(0).y;
         }
-        return interpolate(x,count-2);
+        return interpolate(x, count - 1);
     }
 
     @Override
     protected double interpolate(double x, int floorIndex) {
-        if(count==1){
+        if (count == 1) {
             return this.getNode(0).y;
         }
-        return interpolate(x, this.getNode(floorIndex).x,this.getNode(floorIndex+1).x,this.getNode(floorIndex).y,this.getNode(floorIndex+1).y);
+        return interpolate(x, this.getNode(floorIndex).x, this.getNode(floorIndex + 1).x, this.getNode(floorIndex).y, this.getNode(floorIndex + 1).y);
     }
 
     @Override

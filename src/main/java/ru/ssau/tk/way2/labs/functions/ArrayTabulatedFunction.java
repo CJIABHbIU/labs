@@ -43,26 +43,26 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected double extrapolateLeft(double x) {
-        if(this.count==1){
+        if (this.count == 1) {
             return this.y[0];
         }
-        return interpolate(x,0);
+        return interpolate(x, 0);
     }
 
     @Override
     protected double extrapolateRight(double x) {
-        if(count==1){
+        if (count == 1) {
             return y[0];
         }
-        return interpolate(x,count-2);
+        return interpolate(x, count - 2);
     }
 
     @Override
     protected double interpolate(double x, int floorIndex) {
-        if(count==1){
+        if (count == 1) {
             return y[0];
         }
-        return interpolate(x, this.x[floorIndex],this.x[floorIndex+1],y[floorIndex],y[floorIndex+1]);
+        return interpolate(x, this.x[floorIndex], this.x[floorIndex + 1], y[floorIndex], y[floorIndex + 1]);
     }
 
     @Override

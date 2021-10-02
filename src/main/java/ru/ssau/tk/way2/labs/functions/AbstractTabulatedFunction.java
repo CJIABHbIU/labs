@@ -1,7 +1,7 @@
 package ru.ssau.tk.way2.labs.functions;
 
 public abstract class AbstractTabulatedFunction implements TabulatedFunction {
-    protected int count = 1;
+    protected int count = 0;
 
     abstract protected int floorIndexOfX(double x);
 
@@ -27,7 +27,7 @@ public abstract class AbstractTabulatedFunction implements TabulatedFunction {
             if (indexOfX(x) == -1) {
                 return interpolate(x, floorIndexOfX(x));
             }
-                return getY(indexOfX(x));
+            return getY(indexOfX(x));
         }
         return Double.NaN;
     }

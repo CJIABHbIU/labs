@@ -33,11 +33,11 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(second.apply(14), 196);
         assertEquals(second.extrapolateLeft(13), 196);
         assertEquals(first.apply(0), 0);
-        assertEquals(first.apply(3),6);
-        assertEquals(first.apply(2),4);
-        assertEquals(first.apply(1000),2000);
-        assertEquals(first.indexOfY(6),1);
-        first.setY(1,10);
-        assertEquals(first.getY(1),10);
+        assertEquals(first.apply(3), 6);
+        assertEquals(first.apply(2), 4);
+        assertEquals(first.apply(1000), 2000);
+        assertEquals(first.indexOfY(6), 1);
+        first.setY(1, 10);
+        assertEquals(first.getY(1), 10);
     }
 }
