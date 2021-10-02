@@ -1,7 +1,5 @@
 package ru.ssau.tk.way2.labs.functions;
 
-import java.util.concurrent.atomic.AtomicReference;
-
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     private Node head;
