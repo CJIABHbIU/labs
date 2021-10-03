@@ -41,9 +41,9 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(first.getY(1), 10);
 
         TabulatedFunction third = new ArrayTabulatedFunction(new SqrFunction(), 10, 20, 6);
-        assertEquals(third.apply(0),-120);
-        assertEquals(third.apply(14),196);
-        assertEquals(third.apply(15),226);
-        assertEquals(third.apply(21),438);
+        assertEquals(third.apply(0), -120);
+        assertEquals(third.apply(14), 196);
+        assertEquals(third.apply(15), 226);
+        assertEquals(third.apply(21), 438);
     }
 }
