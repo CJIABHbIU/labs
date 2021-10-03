@@ -3,8 +3,8 @@ package ru.ssau.tk.way2.labs.functions;
 import java.util.Arrays;
 
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
-    private double[] x;
-    private double[] y;
+    private final double[] x;
+    private final double[] y;
 
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) {
         this.x = Arrays.copyOf(xValues, xValues.length);
@@ -16,9 +16,9 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         if (count == 1) {
             this.x = new double[]{xFrom};
             this.y = new double[]{source.apply(xFrom)};
-            this.count = count;
             return;
-        }
+            }
+            this.count = count;
         double step = (xTo - xFrom) / (count - 1);
         double[] x = new double[count];
         double[] y = new double[count];
@@ -28,7 +28,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         }
         this.x = Arrays.copyOf(x, count);
         this.y = Arrays.copyOf(y, count);
-        this.count = count;
     }
 
     @Override
