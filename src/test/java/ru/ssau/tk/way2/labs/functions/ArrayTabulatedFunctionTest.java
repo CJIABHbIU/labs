@@ -8,7 +8,7 @@ public class ArrayTabulatedFunctionTest {
 
     @Test
     public void testAll() {
-        ArrayTabulatedFunction first = new ArrayTabulatedFunction(new double[]{1, 3, 100}, new double[]{2, 6, 200});
+        AbstractTabulatedFunction first = new ArrayTabulatedFunction(new double[]{1, 3, 100}, new double[]{2, 6, 200});
         int actual = first.floorIndexOfX(50);
         int expected = 1;
         assertEquals(actual, expected);
@@ -29,7 +29,7 @@ public class ArrayTabulatedFunctionTest {
         int expectedD = -1;
         assertEquals(expectedD, actualD);
 
-        ArrayTabulatedFunction second = new ArrayTabulatedFunction(new SqrFunction(), 14, 14, 1);
+        AbstractTabulatedFunction second = new ArrayTabulatedFunction(new SqrFunction(), 14, 14, 1);
         assertEquals(second.apply(14), 196);
         assertEquals(second.extrapolateLeft(13), 196);
         assertEquals(first.apply(0), 0);
