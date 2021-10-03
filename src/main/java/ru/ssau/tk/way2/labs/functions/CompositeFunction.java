@@ -9,9 +9,6 @@ public class CompositeFunction implements MathFunction{
         this.secondFunction = secondFunction;
     }
 
-    public CompositeFunction() {
-    }
-
     @Override
     public double apply(double x) {
         return (secondFunction.apply(firstFunction.apply(x)));
