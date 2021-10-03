@@ -12,9 +12,9 @@ public class CompositeFunctionSecondTest {
         double expected = 1;
         assertEquals(actual, expected);
 
-        CompositeFunction second = new CompositeFunction(new ArrayTabulatedFunction(new double[]{1, 2, 5}, new double[]{1, 2, 5}), new LinkedListTabulatedFunction(new double[]{1, 2, 5}, new double[]{1, 2, 5}));
+        CompositeFunction second = new CompositeFunction(new ArrayTabulatedFunction(new double[]{1,2,3}, new double[]{3,4,5}), new LinkedListTabulatedFunction(new double[]{4,5,6}, new double[]{7,8,9}));
         double actualA = second.apply(2);
-        double expectedA = 2;
+        double expectedA = 7;
         assertEquals(actualA, expectedA);
     }
 }
