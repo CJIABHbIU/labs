@@ -1,5 +1,7 @@
 package ru.ssau.tk.way2.labs.functions;
 
+import exceptions.InterpolationException;
+
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     private Node head;
@@ -11,15 +13,20 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
+        if (xValues.length < 2 || yValues.length < 2) {
+            throw new IllegalArgumentException("Size of list is less than minimum (2)");
+        }
         for (int i = 0; i < xValues.length; i++) {
             this.addNode(xValues[i], yValues[i]);
         }
     }
 
     public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
-        if (count == 1) {
-            addNode(xFrom, source.apply(xFrom));
-            return;
+        if (count < 2) {
+            throw new IllegalArgumentException("Size of list is less than minimum (2)");
+        }
+        if (xFrom >= xTo) {
+            throw new IllegalArgumentException("Max X is less, than min X");
         }
         double step = (xTo - xFrom) / (count - 1);
         for (int i = 0; i < count; i++) {
@@ -28,6 +35,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     private Node getNode(int index) {
+        if (index < 0 || index >= count) {
+            throw new IllegalArgumentException("Index is out of bounds");
+        }
         Node current;
         current = this.head;
         for (int i = 0; i < index; i++) {
@@ -55,6 +65,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected int floorIndexOfX(double x) {
+        if (x < head.x) {
+            throw new IllegalArgumentException("X is less than minimal value in linked list");
+        }
         int k = 0;
         for (int i = 0; i < count; i += 1)
             if (this.getNode(i).x <= x) {
@@ -81,8 +94,8 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected double interpolate(double x, int floorIndex) {
-        if (count == 1) {
-            return getNode(0).y;
+        if (x < leftBound() || rightBound() < x) {
+            throw new InterpolationException("X is out of bounds of interpolation");
         }
         return interpolate(x, getNode(floorIndex).x, getNode(floorIndex + 1).x, getNode(floorIndex).y, getNode(floorIndex + 1).y);
     }
