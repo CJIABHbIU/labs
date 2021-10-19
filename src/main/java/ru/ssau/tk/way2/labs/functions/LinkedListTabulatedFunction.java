@@ -3,6 +3,7 @@ package ru.ssau.tk.way2.labs.functions;
 import exceptions.InterpolationException;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
@@ -153,6 +154,21 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
     @Override
     public Iterator<Point> iterator() {
-        throw new UnsupportedOperationException();
+        return new Iterator<Point>() {
+            private Node node = head;
+
+            public boolean hasNext() {
+                return (node != null);
+            }
+
+            public Point next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                Point point = new Point(node.x, node.y);
+                node = (node != head.prev) ? node.next : null;
+                return point;
+            }
+        };
     }
 }
