@@ -3,6 +3,7 @@ package ru.ssau.tk.way2.labs.functions;
 import exceptions.InterpolationException;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     private final double[] x;
@@ -123,5 +124,9 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     @Override
     public double rightBound() {
         return this.x[count - 1];
+    }
+    @Override
+    public Iterator<Point> iterator() {
+        throw new UnsupportedOperationException();
     }
 }

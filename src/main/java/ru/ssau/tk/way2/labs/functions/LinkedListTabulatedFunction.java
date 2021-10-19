@@ -2,6 +2,8 @@ package ru.ssau.tk.way2.labs.functions;
 
 import exceptions.InterpolationException;
 
+import java.util.Iterator;
+
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     private Node head;
@@ -148,5 +150,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     @Override
     public double rightBound() {
         return getNode(count).x;
+    }
+    @Override
+    public Iterator<Point> iterator() {
+        throw new UnsupportedOperationException();
     }
 }
