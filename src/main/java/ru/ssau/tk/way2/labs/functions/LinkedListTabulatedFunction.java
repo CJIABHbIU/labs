@@ -3,6 +3,12 @@ package ru.ssau.tk.way2.labs.functions;
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     private Node head;
+    public static class Node {
+        public Node next;
+        public Node prev;
+        public double x;
+        public double y;
+    }
 
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
         for (int i = 0; i < xValues.length; i++) {

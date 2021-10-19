@@ -1,5 +1,7 @@
 package ru.ssau.tk.way2.labs.functions;
 
+import exceptions.DifferentLengthOfArraysException;
+
 import java.util.Arrays;
 
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
@@ -17,8 +19,8 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
             this.x = new double[]{xFrom};
             this.y = new double[]{source.apply(xFrom)};
             return;
-            }
-            this.count = count;
+        }
+        this.count = count;
         double step = (xTo - xFrom) / (count - 1);
         double[] x = new double[count];
         double[] y = new double[count];
