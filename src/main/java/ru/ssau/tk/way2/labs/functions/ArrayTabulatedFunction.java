@@ -1,6 +1,6 @@
 package ru.ssau.tk.way2.labs.functions;
 
-import exceptions.DifferentLengthOfArraysException;
+import exceptions.InterpolationException;
 
 import java.util.Arrays;
 
@@ -9,16 +9,22 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     private final double[] y;
 
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) {
+        if (xValues.length < 2 || yValues.length < 2) {
+            throw new IllegalArgumentException("Size of list is less than minimum (2)");
+        }
+        checkLengthIsTheSame(xValues, yValues);
+        checkSorted(xValues);
         this.x = Arrays.copyOf(xValues, xValues.length);
         this.y = Arrays.copyOf(yValues, xValues.length);
         this.count = xValues.length;
     }
 
     public ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
-        if (count == 1) {
-            this.x = new double[]{xFrom};
-            this.y = new double[]{source.apply(xFrom)};
-            return;
+        if (count < 2) {
+            throw new IllegalArgumentException("Size of list is less than minimum (2)");
+        }
+        if (xFrom >= xTo) {
+            throw new IllegalArgumentException("Max X is less, than min X");
         }
         this.count = count;
         double step = (xTo - xFrom) / (count - 1);
@@ -34,6 +40,9 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected int floorIndexOfX(double x) {
+        if (x < this.x[0]) {
+            throw new IllegalArgumentException("X is less than the left border of tabulated function");
+        }
         int k = 0;
         for (int i = 0; i < this.count; i += 1)
             if (this.x[i] <= x) {
@@ -60,8 +69,8 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected double interpolate(double x, int floorIndex) {
-        if (count == 1) {
-            return y[0];
+        if (x < this.x[floorIndex] || this.x[floorIndex + 1] < x) {
+            throw new InterpolationException("X is out of bounds of interpolation");
         }
         return interpolate(x, this.x[floorIndex], this.x[floorIndex + 1], y[floorIndex], y[floorIndex + 1]);
     }
