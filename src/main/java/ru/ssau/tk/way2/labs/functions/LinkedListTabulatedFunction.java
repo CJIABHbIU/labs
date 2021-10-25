@@ -92,7 +92,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         if (count == 1) {
             return getNode(0).y;
         }
-        return interpolate(x, count - 1);
+        return interpolate(x, count - 2);
     }
 
     @Override
@@ -150,7 +150,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     public double rightBound() {
-        return getNode(count).x;
+        return getNode(count-1).x;
     }
     @Override
     public Iterator<Point> iterator() {
