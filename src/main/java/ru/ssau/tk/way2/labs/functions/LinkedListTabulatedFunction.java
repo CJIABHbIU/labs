@@ -2,11 +2,13 @@ package ru.ssau.tk.way2.labs.functions;
 
 import exceptions.InterpolationException;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
 
+    private static final long serialVersionUID = 3822831438809733597L;
     private Node head;
     public static class Node {
         public Node next;
