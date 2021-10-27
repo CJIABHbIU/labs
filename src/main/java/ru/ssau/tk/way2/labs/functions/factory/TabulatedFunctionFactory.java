@@ -14,4 +14,8 @@ public interface TabulatedFunctionFactory {
     default TabulatedFunction createUnmodifiable(double[] xValues, double[] yValues) {
         return new UnmodifiableTabulatedFunction(create(xValues, yValues));
     }
+
+    default TabulatedFunction createStructUnmodifiable(double[] xValues, double[] yValues) {
+        return new UnmodifiableTabulatedFunction(new StructTabulatedFunction(create(xValues, yValues)));
+    }
 }
