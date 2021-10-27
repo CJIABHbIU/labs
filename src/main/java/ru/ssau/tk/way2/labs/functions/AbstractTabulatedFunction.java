@@ -1,7 +1,7 @@
 package ru.ssau.tk.way2.labs.functions;
 
-import exceptions.ArrayIsNotSortedException;
-import exceptions.DifferentLengthOfArraysException;
+import ru.ssau.tk.way2.labs.exceptions.ArrayIsNotSortedException;
+import ru.ssau.tk.way2.labs.exceptions.DifferentLengthOfArraysException;
 
 public abstract class AbstractTabulatedFunction implements TabulatedFunction {
     protected int count = 0;

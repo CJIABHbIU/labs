@@ -1,4 +1,4 @@
-package io;
+package ru.ssau.tk.way2.labs.io;
 
 import ru.ssau.tk.way2.labs.functions.TabulatedFunction;
 import ru.ssau.tk.way2.labs.functions.factory.ArrayTabulatedFunctionFactory;

@@ -1,4 +1,4 @@
-package exceptions;
+package ru.ssau.tk.way2.labs.exceptions;
 
 public class InconsistentFunctionsException extends RuntimeException {
     private static final long serialVersionUID = -1221970400808747943L;

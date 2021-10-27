@@ -1,6 +1,5 @@
-package operations;
+package ru.ssau.tk.way2.labs.operations;
 
-import ru.ssau.tk.way2.labs.functions.MathFunction;
 import ru.ssau.tk.way2.labs.functions.Point;
 import ru.ssau.tk.way2.labs.functions.TabulatedFunction;
 import ru.ssau.tk.way2.labs.functions.factory.ArrayTabulatedFunctionFactory;

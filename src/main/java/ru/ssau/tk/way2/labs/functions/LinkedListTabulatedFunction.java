@@ -1,6 +1,6 @@
 package ru.ssau.tk.way2.labs.functions;
 
-import exceptions.InterpolationException;
+import ru.ssau.tk.way2.labs.exceptions.InterpolationException;
 
 import java.io.Serializable;
 import java.util.Iterator;

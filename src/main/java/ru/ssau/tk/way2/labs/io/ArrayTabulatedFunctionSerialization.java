@@ -1,6 +1,6 @@
-package io;
+package ru.ssau.tk.way2.labs.io;
 
-import operations.TabulatedDifferentialOperator;
+import ru.ssau.tk.way2.labs.operations.TabulatedDifferentialOperator;
 import ru.ssau.tk.way2.labs.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.way2.labs.functions.TabulatedFunction;
 import ru.ssau.tk.way2.labs.functions.factory.ArrayTabulatedFunctionFactory;

@@ -1,6 +1,6 @@
-package operations;
+package ru.ssau.tk.way2.labs.operations;
 
-import exceptions.InconsistentFunctionsException;
+import ru.ssau.tk.way2.labs.exceptions.InconsistentFunctionsException;
 import ru.ssau.tk.way2.labs.functions.Point;
 import ru.ssau.tk.way2.labs.functions.TabulatedFunction;
 import ru.ssau.tk.way2.labs.functions.factory.ArrayTabulatedFunctionFactory;

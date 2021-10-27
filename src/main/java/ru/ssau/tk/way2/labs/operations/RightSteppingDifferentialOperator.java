@@ -1,4 +1,4 @@
-package operations;
+package ru.ssau.tk.way2.labs.operations;
 
 import ru.ssau.tk.way2.labs.functions.MathFunction;
 
