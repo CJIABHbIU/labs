@@ -2,7 +2,7 @@ package ru.ssau.tk.way2.labs.operations;
 
 import ru.ssau.tk.way2.labs.functions.MathFunction;
 
-public class RightSteppingDifferentialOperator extends SteppingDifferentialOperator{
+public class RightSteppingDifferentialOperator extends SteppingDifferentialOperator {
     public RightSteppingDifferentialOperator(double step) {
         super(step);
     }
