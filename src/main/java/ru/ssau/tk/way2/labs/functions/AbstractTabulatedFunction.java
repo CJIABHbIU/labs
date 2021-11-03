@@ -3,7 +3,10 @@ package ru.ssau.tk.way2.labs.functions;
 import ru.ssau.tk.way2.labs.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.way2.labs.exceptions.DifferentLengthOfArraysException;
 
-public abstract class AbstractTabulatedFunction implements TabulatedFunction {
+import java.io.Serializable;
+
+public abstract class AbstractTabulatedFunction implements TabulatedFunction, Serializable {
+    private static final long serialVersionUID = -7838680106609018643L;
     protected int count = 0;
 
     protected abstract int floorIndexOfX(double x);
