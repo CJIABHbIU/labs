@@ -40,7 +40,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         }
     }
 
-    private Node getNode(int index) {
+    protected Node getNode(int index) {
         if (index < 0 || index >= count) {
             throw new IllegalArgumentException("Index is out of bounds");
         }
@@ -52,7 +52,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         return current;
     }
 
-    private void addNode(double x, double y) {
+    protected void addNode(double x, double y) {
         Node newNode = new Node();
         newNode.x = x;
         newNode.y = y;

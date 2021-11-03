@@ -3,7 +3,7 @@ package ru.ssau.tk.way2.labs.functions;
 import java.util.Iterator;
 
 public class UnmodifiableTabulatedFunction implements TabulatedFunction {
-    final private TabulatedFunction function;
+    private final TabulatedFunction function;
 
     public UnmodifiableTabulatedFunction(TabulatedFunction function) {
         this.function = function;
