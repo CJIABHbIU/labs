@@ -6,10 +6,71 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Serializable, Insertable, Removable {
 
     private static final long serialVersionUID = 3822831438809733597L;
     private Node head;
+
+    @Override
+    public void insert(double x, double y) {
+        if (indexOfX(x) != -1) {
+            setY(indexOfX(x), y);
+        }
+
+        if (head == null) {
+            addNode(x, y);
+            count++;
+        } else {
+            Node node = new Node();
+            node.x = x;
+            node.y = y;
+
+            if (head.x > x) {
+                node.next = head;
+                node.prev = head.prev;
+                head.prev.next = node;
+                head = node;
+            } else if (floorIndexOfX(x) == 0) {
+              node.next = head.next;
+             node.prev = head;
+             head.next = node;
+            }
+            else if (floorIndexOfX(x) == count) {
+                node.next = head;
+                node.prev = head.prev;
+                head.prev = node;
+                head.prev.next = node;
+                head.prev = node;
+
+            } else {
+                int ind = floorIndexOfX(x);
+                Node check = getNode(ind);
+                node.next = check.next;
+                node.prev = check;
+                check.next = node;
+            }
+            count++;
+        }
+    }
+
+    @Override
+    public void remove(int index) {
+        if (count <= 2){
+            throw new IllegalArgumentException("Length less than or equal to 2 points");
+        }
+        Node delete = floorNodeOfX(getX(index));
+        Node prevDelete = delete.prev;
+        if (index == 0){
+            head.prev.next = delete.next;
+            head = delete.next;
+        } else if(index == count - 1){
+            prevDelete.next = head;
+            head.prev = prevDelete;
+        }else{
+            prevDelete.next = delete.next;
+        }
+        count--;
+    }
 
     public static class Node implements Serializable {
         private static final long serialVersionUID = 8650390027478213004L;

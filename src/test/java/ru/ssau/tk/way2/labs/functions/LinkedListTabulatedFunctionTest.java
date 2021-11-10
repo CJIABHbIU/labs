@@ -239,4 +239,21 @@ public class LinkedListTabulatedFunctionTest {
         assertThrows(IllegalArgumentException.class, () -> getListOfArray().floorNodeOfX(0));
         assertThrows(IllegalArgumentException.class, () -> getListOfArray().floorNodeOfX(-1));
     }
+
+    @Test
+    public void testRemove() {
+        LinkedListTabulatedFunction list2points = new LinkedListTabulatedFunction(new double[]{1, 2}, new double[]{3, 4});
+
+        assertThrows(IllegalArgumentException.class, () -> list2points.remove(1));
+
+        LinkedListTabulatedFunction listOfArray = getListOfArray();
+        listOfArray.remove(2);
+        assertEquals(listOfArray.getX(0), 1, ACCURACY);
+        assertEquals(listOfArray.getX(1), 2, ACCURACY);
+        LinkedListTabulatedFunction listOfArray1 = getListOfArray();
+        listOfArray1.remove(4);
+        assertEquals(listOfArray1.getX(0), 1, ACCURACY);
+        assertEquals(listOfArray1.getX(1), 2, ACCURACY);
+        assertEquals(listOfArray1.getX(2), 3, ACCURACY);
+    }
 }

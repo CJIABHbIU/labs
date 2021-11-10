@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
+public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Serializable, Insertable, Removable {
     private static final long serialVersionUID = -275918781697489264L;
-    private final double[] x;
-    private final double[] y;
+    private double[] x;
+    private double[] y;
 
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) {
         if (xValues.length < 2 || yValues.length < 2) {
@@ -142,5 +142,59 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
                 return point;
             }
         };
+    }
+
+    @Override
+    public void insert(double x, double y) {
+        int ch = 0;
+        for (int u = 0; u < count; u++) {
+            if (this.x[u] == x) {
+                this.y[u] = y;
+                ch = 1;
+                break;
+            }
+        }
+        if (ch == 0) {
+            double[] yValues1 = new double[count + 1];
+            double[] xValues1 = new double[count + 1];
+            for (int u = 0; u < count; u++) {
+                if (this.x[u] > x) {
+                    System.arraycopy(y, 0, yValues1, 0, u);
+                    yValues1[u] = y;
+                    System.arraycopy(y, u, yValues1, u + 1, count - u);
+
+                    System.arraycopy(x, 0, xValues1, 0, u);
+                    xValues1[u] = x;
+                    System.arraycopy(x, u, xValues1, u + 1, count - u);
+                    break;
+                }
+            }
+            if (x > this.x[count - 1]) {
+                System.arraycopy(y, 0, yValues1, 0, count);
+                yValues1[count] = y;
+                System.arraycopy(x, 0, xValues1, 0, count);
+                xValues1[count] = x;
+            }
+            count++;
+            this.y = yValues1;
+            this.x = xValues1;
+        }
+    }
+
+    @Override
+    public void remove(int index) {
+        if (count <=2) {
+            throw new IllegalArgumentException("Array's length is less than 2");
+        }
+        double[] xValues1 = new double[count - 1];
+        double[] yValues1 = new double[count - 1];
+        System.arraycopy(this.y, 0, yValues1, 0, index);
+        System.arraycopy(this.y, index + 1, yValues1, index, count - index - 1);
+
+        System.arraycopy(this.x, 0, xValues1, 0, index);
+        System.arraycopy(this.x, index + 1, xValues1, index, count - index - 1);
+        count--;
+        this.x = xValues1;
+        this.y = yValues1;
     }
 }

@@ -266,4 +266,25 @@ public class ArrayTabulatedFunctionTest {
         }
         assertEquals(arr0.getCount(), i);
     }
+
+    @Test
+    public void testRemove() {
+        ArrayTabulatedFunction a = arr2();
+        a.remove(0);
+        assertEquals(a.getX(0), 4.0);
+        assertEquals(a.getY(0), 16.0);
+        assertEquals(a.getX(1), 9.0);
+        assertEquals(a.getY(1), 81.0);
+        assertEquals(a.getX(2), 16.0);
+        assertEquals(a.getY(2), 256.0);
+        assertEquals(a.getCount(), 3);
+        assertEquals(a.getY(1), 81.0);
+        a.remove(1);
+        assertEquals(a.getX(0), 4.0);
+        assertEquals(a.getY(0), 16.0);
+        assertEquals(a.getX(1), 16.0);
+        assertEquals(a.getY(1), 256.0);
+        assertEquals(a.getCount(), 2);
+        assertThrows(IllegalArgumentException.class, () -> a.remove(0));
+    }
 }
