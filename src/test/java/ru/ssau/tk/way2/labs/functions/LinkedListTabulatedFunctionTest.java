@@ -228,4 +228,15 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(listOfArray.getCount(), i);
 
     }
+
+    @Test
+    public void testFloorNodeOfX() {
+        LinkedListTabulatedFunction listOfArray = getListOfArray();
+
+        assertEquals(listOfArray.floorNodeOfX(1).x, 2.0);
+        assertEquals(listOfArray.floorNodeOfX(10).x, 5.0);
+
+        assertThrows(IllegalArgumentException.class, () -> getListOfArray().floorNodeOfX(0));
+        assertThrows(IllegalArgumentException.class, () -> getListOfArray().floorNodeOfX(-1));
+    }
 }

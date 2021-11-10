@@ -10,6 +10,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
     private static final long serialVersionUID = 3822831438809733597L;
     private Node head;
+
     public static class Node implements Serializable {
         private static final long serialVersionUID = 8650390027478213004L;
         public Node next;
@@ -59,8 +60,8 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         count++;
         if (head == null) {
             head = newNode;
-            head.prev = newNode;
-            head.next = newNode;
+            newNode.prev = newNode;
+            newNode.next = newNode;
         } else {
             head.prev.next = newNode;
             head.prev = newNode;
@@ -76,7 +77,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         }
         int k = 0;
         for (int i = 0; i < count; i += 1)
-            if (this.getNode(i).x <= x) {
+            if (this.getNode(i+1).x <= x) {
                 k = i;
             }
         return k;
@@ -147,8 +148,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
     @Override
     public double rightBound() {
-        return getNode(count-1).x;
+        return getNode(count - 1).x;
     }
+
     @Override
     public Iterator<Point> iterator() {
         return new Iterator<Point>() {
@@ -167,5 +169,24 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
                 return point;
             }
         };
+    }
+
+    protected Node floorNodeOfX(double x) {
+        Node node = head;
+        if (x < head.x) {
+            throw new IllegalArgumentException("X is less than the left border");
+        }
+        for (int i = 0; i < count; i++) {
+            if (x == head.prev.x) {
+                return head.prev;
+            } else {
+                if (node.x <= x) {
+                    node = node.next;
+                } else {
+                    return node.prev;
+                }
+            }
+        }
+        return head.prev;
     }
 }
