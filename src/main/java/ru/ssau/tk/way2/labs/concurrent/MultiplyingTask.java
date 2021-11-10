@@ -2,15 +2,16 @@ package ru.ssau.tk.way2.labs.concurrent;
 
 import ru.ssau.tk.way2.labs.functions.TabulatedFunction;
 
-public class ReadWriteTask implements Runnable {
+public class MultiplyingTask implements Runnable{
+
     private final TabulatedFunction function;
     private Runnable postRunAction;
 
-    public ReadWriteTask(TabulatedFunction function) {
+    public MultiplyingTask(TabulatedFunction function) {
         this.function = function;
     }
 
-    public ReadWriteTask(TabulatedFunction function, Runnable postRunAction) {
+    public MultiplyingTask(TabulatedFunction function, Runnable postRunAction) {
         this.function = function;
         this.postRunAction = postRunAction;
     }
@@ -23,9 +24,10 @@ public class ReadWriteTask implements Runnable {
             x = function.getX(i);
             synchronized (function){
                 y = function.getY(i);
-                System.out.printf("%s, before write: i = %d, x = %f, y = %f \n", Thread.currentThread().getName(), i, x, y);
-                function.setY(i, y + 1);y = function.getY(i);
-                System.out.printf("%s, after write: i = %d, x = %f, y = %f \n", Thread.currentThread().getName(), i, x, y);
+                System.out.printf("%s, i = %d, x = %f, old y = %f \n", Thread.currentThread().getName(), i, x, y);
+                function.setY(i, y * 10);
+                y = function.getY(i);
+                System.out.printf("%s, i = %d, x = %f, new y = %f \n", Thread.currentThread().getName(), i, x, y);
             }
         }
         postRunAction.run();
