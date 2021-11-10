@@ -1,6 +1,6 @@
 package ru.ssau.tk.way2.labs.functions;
 
-class ZeroFunction extends ConstantFunction {
+public class ZeroFunction extends ConstantFunction {
     public ZeroFunction() {
     }
 
