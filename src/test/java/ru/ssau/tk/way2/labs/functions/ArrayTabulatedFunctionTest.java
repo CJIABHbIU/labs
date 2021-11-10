@@ -215,7 +215,6 @@ public class ArrayTabulatedFunctionTest {
         ArrayTabulatedFunction t21 = arr1();
         ArrayTabulatedFunction t11 = arr2();
         ArrayTabulatedFunction t12 = arr3();
-        ArrayTabulatedFunction t13 = arr4();
 
         assertEquals(t11.interpolate(3, 0), 11, ACCURACY);
         assertEquals(t12.interpolate(15, 0), 10, ACCURACY);

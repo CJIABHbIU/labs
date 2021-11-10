@@ -84,17 +84,11 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
     @Override
     protected double extrapolateLeft(double x) {
-        if (this.count == 1) {
-            return getNode(0).y;
-        }
         return interpolate(x, 0);
     }
 
     @Override
     protected double extrapolateRight(double x) {
-        if (count == 1) {
-            return getNode(0).y;
-        }
         return interpolate(x, count - 2);
     }
 

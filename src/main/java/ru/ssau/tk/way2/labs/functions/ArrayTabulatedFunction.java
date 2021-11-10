@@ -57,17 +57,11 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
 
     @Override
     protected double extrapolateLeft(double x) {
-        if (this.count == 1) {
-            return this.y[0];
-        }
         return interpolate(x, 0);
     }
 
     @Override
     protected double extrapolateRight(double x) {
-        if (count == 1) {
-            return y[0];
-        }
         return interpolate(x, count - 2);
     }
 

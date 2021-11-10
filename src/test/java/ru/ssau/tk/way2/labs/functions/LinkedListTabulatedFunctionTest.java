@@ -47,6 +47,10 @@ public class LinkedListTabulatedFunctionTest {
 
         LinkedListTabulatedFunction list2 = new LinkedListTabulatedFunction(function, 1, 3, 10);
 
+        assertThrows(IllegalArgumentException.class, ()->{
+            LinkedListTabulatedFunction list = new LinkedListTabulatedFunction(function, 1, 1, 1);
+        });
+
     }
 
     @Test
@@ -101,9 +105,9 @@ public class LinkedListTabulatedFunctionTest {
         LinkedListTabulatedFunction listOfArray = getListOfArray();
 
         assertEquals(listOfArray.getNode(2).x, 3, ACCURACY);
-        assertThrows(IndexOutOfBoundsException.class, () -> getListOfArray().getNode(100));
-        assertThrows(IndexOutOfBoundsException.class, () -> getListOfArray().getNode(-1));
-        assertThrows(IndexOutOfBoundsException.class, () -> getListOfArray().getNode(5));
+        assertThrows(IllegalArgumentException.class, () -> getListOfArray().getNode(100));
+        assertThrows(IllegalArgumentException.class, () -> getListOfArray().getNode(-1));
+        assertThrows(IllegalArgumentException.class, () -> getListOfArray().getNode(5));
 
     }
 
@@ -195,6 +199,7 @@ public class LinkedListTabulatedFunctionTest {
 
         assertEquals(listOfArray.interpolate(4, 3), 8.0);
         assertEquals(listOfArray.interpolate(3, 2), 6.0);
+
         assertThrows(InterpolationException.class, () -> listOfArray.interpolate(15, 2));
         assertThrows(InterpolationException.class, () -> listOfArray.interpolate(9, 1));
     }
