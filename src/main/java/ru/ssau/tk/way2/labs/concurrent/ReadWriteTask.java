@@ -21,10 +21,11 @@ public class ReadWriteTask implements Runnable {
         double y;
         for (int i = 0; i < function.getCount(); i++) {
             x = function.getX(i);
-            synchronized (function){
+            synchronized (function) {
                 y = function.getY(i);
                 System.out.printf("%s, before write: i = %d, x = %f, y = %f \n", Thread.currentThread().getName(), i, x, y);
-                function.setY(i, y + 1);y = function.getY(i);
+                function.setY(i, y + 1);
+                y = function.getY(i);
                 System.out.printf("%s, after write: i = %d, x = %f, y = %f \n", Thread.currentThread().getName(), i, x, y);
             }
         }

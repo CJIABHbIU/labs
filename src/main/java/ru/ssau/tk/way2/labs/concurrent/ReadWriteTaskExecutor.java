@@ -14,7 +14,7 @@ public class ReadWriteTaskExecutor {
         List<Thread> list = new ArrayList<>();
         int countThread = 20;
         CountDownLatch countDownLatch = new CountDownLatch(countThread);
-        ReadWriteTask myTask = new ReadWriteTask(function, countDownLatch :: countDown);
+        ReadWriteTask myTask = new ReadWriteTask(function, countDownLatch::countDown);
         for (int i = 0; i < countThread; i++) {
             list.add(new Thread(myTask));
         }

@@ -12,8 +12,8 @@ public class AddingMultiplyingTaskExecutor {
 
         CountDownLatch countDownLatch = new CountDownLatch(3);
 
-        AddingTask addingTask = new AddingTask(function, countDownLatch :: countDown);
-        MultiplyingTask multiplyingTask = new MultiplyingTask(function, countDownLatch :: countDown);
+        AddingTask addingTask = new AddingTask(function, countDownLatch::countDown);
+        MultiplyingTask multiplyingTask = new MultiplyingTask(function, countDownLatch::countDown);
 
         Thread thread1 = new Thread(multiplyingTask);
         thread1.start();
