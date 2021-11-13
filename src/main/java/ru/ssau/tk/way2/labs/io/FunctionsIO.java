@@ -1,5 +1,9 @@
 package ru.ssau.tk.way2.labs.io;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.thoughtworks.xstream.XStream;
+import ru.ssau.tk.way2.labs.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.way2.labs.functions.Point;
 import ru.ssau.tk.way2.labs.functions.TabulatedFunction;
 import ru.ssau.tk.way2.labs.functions.factory.TabulatedFunctionFactory;
@@ -74,5 +78,29 @@ public final class FunctionsIO {
 
     public static TabulatedFunction deserialize(BufferedInputStream stream) throws IOException, ClassNotFoundException {
         return (TabulatedFunction) new ObjectInputStream(stream).readObject();
+    }
+
+    public static void serializeJson(BufferedWriter writer, ArrayTabulatedFunction function) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        String functionAsString = mapper.writeValueAsString(function);
+        writer.write(functionAsString);
+        writer.flush();
+    }
+
+    public static ArrayTabulatedFunction deserializeJson(BufferedReader reader) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readerFor(ArrayTabulatedFunction.class).readValue(reader);
+    }
+
+    static void serializeXml(BufferedWriter writer, ArrayTabulatedFunction function) throws IOException {
+        XStream xmlWriter = new XStream();
+        String xmlString = xmlWriter.toXML(function);
+        writer.write(xmlString);
+        writer.flush();
+    }
+
+    static ArrayTabulatedFunction deserializeXml(BufferedReader reader) throws IOException {
+        XStream xmlReader = new XStream();
+        return (ArrayTabulatedFunction) xmlReader.fromXML(reader);
     }
 }
