@@ -25,7 +25,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             node.x = x;
             node.y = y;
 
-            if (head.x > x) {
+            if (head.prev.x > x) {
                 node.next = head;
                 node.prev = head.prev;
                 head.prev.next = node;
@@ -40,7 +40,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
                 node.prev = head.prev;
                 head.prev = node;
                 head.prev.next = node;
-                head.prev = node;
+                head.prev.prev = node;
 
             } else {
                 int ind = floorIndexOfX(x);
@@ -138,7 +138,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         }
         int k = 0;
         for (int i = 0; i < count; i += 1)
-            if (this.getNode(i+1).x <= x) {
+            if (this.getNode(i).x <= x) {
                 k = i;
             }
         return k;

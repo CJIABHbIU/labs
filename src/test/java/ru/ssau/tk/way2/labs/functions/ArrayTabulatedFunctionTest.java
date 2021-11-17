@@ -287,4 +287,67 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(a.getCount(), 2);
         assertThrows(IllegalArgumentException.class, () -> a.remove(0));
     }
+
+    @Test
+    public void testInsert() {
+        ArrayTabulatedFunction t11 = arr2();
+        t11.insert(4, 2);
+        System.out.println(t11);
+        assertEquals(t11.getX(0), 1.0);
+        assertEquals(t11.getY(0), 1.0);
+        assertEquals(t11.getX(1), 4.0);
+        assertEquals(t11.getY(1), 2.0);
+        assertEquals(t11.getX(2), 9.0);
+        assertEquals(t11.getY(2), 81.0);
+        assertEquals(t11.getX(3), 16.0);
+        assertEquals(t11.getY(3), 256.0);
+        assertEquals(t11.getCount(), 4);
+        t11.insert(5, 6);
+        System.out.println(t11);
+        assertEquals(t11.getX(0), 1.0);
+        assertEquals(t11.getY(0), 1.0);
+        assertEquals(t11.getX(1), 4.0);
+        assertEquals(t11.getY(1), 2.0);
+        assertEquals(t11.getX(2), 5.0);
+        assertEquals(t11.getY(2), 6.0);
+        assertEquals(t11.getX(3), 9.0);
+        assertEquals(t11.getY(3), 81.0);
+        assertEquals(t11.getX(4), 16.0);
+        assertEquals(t11.getY(4), 256.0);
+        assertEquals(t11.getCount(), 5);
+        ArrayTabulatedFunction t1 = arr2();
+        System.out.println(t1);
+        t1.insert(0, 10);
+        System.out.println(t1);
+        t11.insert(5, 6);
+        System.out.println(t11);
+        assertEquals(t1.getX(0), 0.0);
+        assertEquals(t1.getY(0), 10.0);
+        assertEquals(t1.getX(1), 1.0);
+        assertEquals(t1.getY(1), 1.0);
+        assertEquals(t1.getX(2), 4.0);
+        assertEquals(t1.getY(2), 16.0);
+        assertEquals(t1.getX(3), 9.0);
+        assertEquals(t1.getY(3), 81.0);
+        assertEquals(t1.getX(4), 16.0);
+        assertEquals(t1.getY(4), 256.0);
+        assertEquals(t1.getCount(), 5);
+        t1.insert(27, 1010);
+        System.out.println(t1);
+        assertEquals(t1.getX(0), 0.0);
+        assertEquals(t1.getY(0), 10.0);
+        assertEquals(t1.getX(1), 1.0);
+        assertEquals(t1.getY(1), 1.0);
+        assertEquals(t1.getX(2), 4.0);
+        assertEquals(t1.getY(2), 16.0);
+        assertEquals(t1.getX(3), 9.0);
+        assertEquals(t1.getY(3), 81.0);
+        assertEquals(t1.getX(4), 16.0);
+        assertEquals(t1.getY(4), 256.0);
+        assertEquals(t1.getX(5), 27.0);
+        assertEquals(t1.getY(5), 1010.0);
+        assertEquals(t1.getCount(), 6);
+
+    }
+
 }

@@ -128,6 +128,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
     public double rightBound() {
         return this.x[count - 1];
     }
+
     @Override
     public Iterator<Point> iterator() {
         return new Iterator<Point>() {
@@ -152,8 +153,10 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
 
     @Override
     public void insert(double x, double y) {
+        int u;
         int ch = 0;
-        for (int u = 0; u < count; u++) {
+        boolean flag = false;
+        for (u = 0; u < count; u++) {
             if (this.x[u] == x) {
                 this.y[u] = y;
                 ch = 1;
@@ -163,23 +166,44 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
         if (ch == 0) {
             double[] yValues1 = new double[count + 1];
             double[] xValues1 = new double[count + 1];
-            for (int u = 0; u < count; u++) {
-                if (this.x[u] > x) {
-                    System.arraycopy(y, 0, yValues1, 0, u);
-                    yValues1[u] = y;
-                    System.arraycopy(y, u, yValues1, u + 1, count - u);
-
-                    System.arraycopy(x, 0, xValues1, 0, u);
-                    xValues1[u] = x;
-                    System.arraycopy(x, u, xValues1, u + 1, count - u);
-                    break;
-                }
+            u = 0;
+            if(x<this.x[0]){
+                xValues1[0] = x;
+                yValues1[0] = y;
+                flag = true;
             }
-            if (x > this.x[count - 1]) {
-                System.arraycopy(y, 0, yValues1, 0, count);
-                yValues1[count] = y;
-                System.arraycopy(x, 0, xValues1, 0, count);
+            while (u < count - 1) {
+                if (x > this.x[u]) {
+                    xValues1[u] = this.x[u];
+                    yValues1[u] = this.y[u];
+                }
+                if((this.x[u] < x) & (x < this.x[u + 1])){
+                    xValues1[u+1] = x;
+                    yValues1[u+1] = y;
+                    flag = true;
+                }
+                if(flag & x < this.x[u]){
+                    xValues1[u+1] = this.x[u];
+                    yValues1[u+1] = this.y[u];
+                } else if(this.x[u] > x){
+                    xValues1[u] = this.x[u];
+                    yValues1[u] = this.y[u];
+                }
+                u++;
+            }
+            if(flag){
+                xValues1[count] = this.x[count - 1];
+                yValues1[count] = this.y[count - 1];
+            } else if(x < this.x[count - 1]){
+                xValues1[count-1] = x;
+                yValues1[count-1] = y;
+                xValues1[count] = this.x[count - 1];
+                yValues1[count] = this.y[count - 1];
+            } else{
                 xValues1[count] = x;
+                yValues1[count] = y;
+                xValues1[count - 1] = this.x[count - 1];
+                yValues1[count - 1] = this.y[count - 1];
             }
             count++;
             this.y = yValues1;
@@ -189,7 +213,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
 
     @Override
     public void remove(int index) {
-        if (count <=2) {
+        if (count <= 2) {
             throw new IllegalArgumentException("Array's length is less than 2");
         }
         double[] xValues1 = new double[count - 1];
