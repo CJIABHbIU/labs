@@ -15,6 +15,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     public void insert(double x, double y) {
         if (indexOfX(x) != -1) {
             setY(indexOfX(x), y);
+            return;
         }
 
         if (head == null) {
@@ -25,17 +26,18 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             node.x = x;
             node.y = y;
 
-            if (head.prev.x > x) {
+            if (head.prev.x < x) {
+                node.next = head;
+                node.prev = head.prev;
+                head.prev.next = node;
+                head.prev = node;
+            } else if (head.x > x) {
+                head.next.prev = head;
                 node.next = head;
                 node.prev = head.prev;
                 head.prev.next = node;
                 head = node;
-            } else if (floorIndexOfX(x) == 0) {
-              node.next = head.next;
-             node.prev = head;
-             head.next = node;
-            }
-            else if (floorIndexOfX(x) == count) {
+            } else if (floorIndexOfX(x) == count) {
                 node.next = head;
                 node.prev = head.prev;
                 head.prev = node;
@@ -55,19 +57,21 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
     @Override
     public void remove(int index) {
-        if (count <= 2){
+        if (count <= 2) {
             throw new IllegalArgumentException("Length less than or equal to 2 points");
         }
-        Node delete = floorNodeOfX(getX(index));
-        Node prevDelete = delete.prev;
-        if (index == 0){
-            head.prev.next = delete.next;
-            head = delete.next;
-        } else if(index == count - 1){
-            prevDelete.next = head;
-            head.prev = prevDelete;
-        }else{
-            prevDelete.next = delete.next;
+
+        if(index == 0){
+            head.next.prev = head.prev;
+            head = head.next;
+        } else if(index == count-1){
+            head.prev = head.prev.prev;
+            head.prev.next = head;
+        } else{
+             Node delete = getNode(index);
+             delete.prev.next = delete.next;
+             delete.next.prev = delete.prev;
+             delete = delete.next;
         }
         count--;
     }

@@ -27,8 +27,8 @@ public class MultiplyingTask implements Runnable {
                 System.out.printf("%s, i = %d, x = %f, old y = %f \n", Thread.currentThread().getName(), i, x, y);
                 function.setY(i, y * 10);
                 y = function.getY(i);
-                System.out.printf("%s, i = %d, x = %f, new y = %f \n", Thread.currentThread().getName(), i, x, y);
             }
+            System.out.printf("%s, i = %d, x = %f, new y = %f \n", Thread.currentThread().getName(), i, x, y);
         }
         postRunAction.run();
     }

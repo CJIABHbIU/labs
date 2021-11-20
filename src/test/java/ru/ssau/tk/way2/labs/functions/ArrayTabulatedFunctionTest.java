@@ -269,22 +269,27 @@ public class ArrayTabulatedFunctionTest {
 
     @Test
     public void testRemove() {
-        ArrayTabulatedFunction a = arr2();
+        ArrayTabulatedFunction a = new ArrayTabulatedFunction(new double[]{1, 4, 9, 10, 16}, new double[]{1, 16, 81, 100, 256});
         a.remove(0);
         assertEquals(a.getX(0), 4.0);
         assertEquals(a.getY(0), 16.0);
         assertEquals(a.getX(1), 9.0);
         assertEquals(a.getY(1), 81.0);
-        assertEquals(a.getX(2), 16.0);
-        assertEquals(a.getY(2), 256.0);
-        assertEquals(a.getCount(), 3);
+        assertEquals(a.getX(2), 10.0);
+        assertEquals(a.getY(2), 100.0);
+        assertEquals(a.getCount(), 4);
         assertEquals(a.getY(1), 81.0);
         a.remove(1);
         assertEquals(a.getX(0), 4.0);
         assertEquals(a.getY(0), 16.0);
-        assertEquals(a.getX(1), 16.0);
-        assertEquals(a.getY(1), 256.0);
-        assertEquals(a.getCount(), 2);
+        assertEquals(a.getX(1), 10.0);
+        assertEquals(a.getY(1), 100.0);
+        assertEquals(a.getCount(), 3);
+        a.remove(2);
+        assertEquals(a.getX(0), 4);
+        assertEquals(a.getY(0), 16);
+        assertEquals(a.getX(1), 10);
+        assertEquals(a.getY(1), 100);
         assertThrows(IllegalArgumentException.class, () -> a.remove(0));
     }
 
