@@ -61,17 +61,15 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             throw new IllegalArgumentException("Length less than or equal to 2 points");
         }
 
-        if(index == 0){
+        if (index == 0) {
             head.next.prev = head.prev;
+            head.prev.next = head.next;
             head = head.next;
-        } else if(index == count-1){
-            head.prev = head.prev.prev;
-            head.prev.next = head;
-        } else{
-             Node delete = getNode(index);
-             delete.prev.next = delete.next;
-             delete.next.prev = delete.prev;
-             delete = delete.next;
+        } else {
+            Node delete = getNode(index);
+            Node prevDelete = getNode(index - 1);
+            prevDelete.next = delete.next;
+            delete.next.prev = prevDelete;
         }
         count--;
     }
