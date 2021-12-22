@@ -1,4 +1,4 @@
-package ui;
+package ru.ssau.tk.way2.labs.ui;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;

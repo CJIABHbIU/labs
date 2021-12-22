@@ -1,4 +1,4 @@
-package ui;
+package ru.ssau.tk.way2.labs.ui;
 
 import javax.swing.*;
 import java.io.File;

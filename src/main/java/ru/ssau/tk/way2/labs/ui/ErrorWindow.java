@@ -1,4 +1,4 @@
-package ui;
+package ru.ssau.tk.way2.labs.ui;
 
 import ru.ssau.tk.way2.labs.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.way2.labs.exceptions.FunctionAreNotSimilarException;

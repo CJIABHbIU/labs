@@ -9,15 +9,17 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.target>1.11</maven.compiler.target>
-        <maven.compiler.source>1.11</maven.compiler.source>
+        <maven.compiler.target>1.14</maven.compiler.target>
+        <maven.compiler.source>1.14</maven.compiler.source>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.4.0</version>
+            <version>6.14.3</version>
         </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -57,11 +59,8 @@
             <artifactId>jfreechart</artifactId>
             <version>1.0.19</version>
         </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.12</version>
-        </dependency>
+
     </dependencies>
+
 
 </project>

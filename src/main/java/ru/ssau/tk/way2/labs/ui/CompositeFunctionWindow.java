@@ -1,4 +1,4 @@
-package ui;
+package ru.ssau.tk.way2.labs.ui;
 
 import ru.ssau.tk.way2.labs.exceptions.WrongNumberOfElementsException;
 import ru.ssau.tk.way2.labs.functions.CompositeFunction;
@@ -7,7 +7,6 @@ import ru.ssau.tk.way2.labs.io.FunctionsIO;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.image.PixelInterleavedSampleModel;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,7 +26,7 @@ public class CompositeFunctionWindow extends JDialog{
     private TabulatedFunction g;
     private TabulatedFunction fg;
     private int numberOfFunctions = 0;
-    private PixelInterleavedSampleModel points;
+    private PointsWindow points;
     private boolean flag1 = false;
     private boolean flag2 = false;
 

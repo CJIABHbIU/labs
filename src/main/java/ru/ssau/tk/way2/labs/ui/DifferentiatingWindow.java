@@ -1,4 +1,4 @@
-package ui;
+package ru.ssau.tk.way2.labs.ui;
 
 import ru.ssau.tk.way2.labs.exceptions.WrongNumberOfElementsException;
 import ru.ssau.tk.way2.labs.functions.TabulatedFunction;
@@ -7,7 +7,6 @@ import ru.ssau.tk.way2.labs.operations.TabulatedDifferentialOperator;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.AbstractTableModel;
 import java.io.*;
 import java.util.*;
 import java.util.List;

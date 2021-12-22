@@ -1,4 +1,4 @@
-package ui;
+package ru.ssau.tk.way2.labs.ui;
 import ru.ssau.tk.way2.labs.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.way2.labs.functions.factory.LinkedListTabulatedFunctionFactory;
 import ru.ssau.tk.way2.labs.functions.factory.TabulatedFunctionFactory;
