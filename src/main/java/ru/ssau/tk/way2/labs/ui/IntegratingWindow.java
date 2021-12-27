@@ -177,8 +177,7 @@ public class IntegratingWindow extends JDialog {
                 double sum = 0;
                 ForkJoinPool pool = new ForkJoinPool(threadCount);
 
-                IntegratingTask task = new IntegratingTask(function0, function0.leftBound(), function0.rightBound(), integratingResult);
-                pool.invoke(task);
+
 
                 for (double s : integratingResult) {
                     sum = sum + s;
