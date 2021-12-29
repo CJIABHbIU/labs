@@ -11,7 +11,7 @@ public class GraphicInterface extends JFrame {
     private final JButton plotButton = new JButton("Построить функцию");
     private final JButton compositeFunctionButton = new JButton("Сложная функция");
     private final JButton settingsButton = new JButton("Настройки");
-    //private final JLabel mainImage = new JLabel(new ImageIcon(Objects.requireNonNull(this.getClass().getClassLoader().getResource("main.jpg")).getPath()));
+    private final JLabel mainImage = new JLabel(new ImageIcon(Objects.requireNonNull(this.getClass().getClassLoader().getResource("main.jpg")).getPath()));
 
 
     public GraphicInterface() {
@@ -46,8 +46,8 @@ public class GraphicInterface extends JFrame {
         layout.setAutoCreateContainerGaps(true);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                 .addGroup(layout.createSequentialGroup()
-                        //.addGroup(layout.createSequentialGroup()
-                                //.addComponent(mainImage))
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(mainImage))
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                                 .addComponent(settingsButton, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(functionCreate, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -59,8 +59,8 @@ public class GraphicInterface extends JFrame {
 
         layout.setVerticalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        //.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                //.addComponent(mainImage))
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(mainImage))
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(settingsButton)
                                 .addComponent(functionCreate)
